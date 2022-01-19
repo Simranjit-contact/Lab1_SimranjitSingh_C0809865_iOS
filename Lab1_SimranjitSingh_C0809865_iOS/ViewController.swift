@@ -9,13 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
+    //Labels for turn, result and scoreboard
     @IBOutlet weak var turnLabel: UILabel!
     @IBOutlet weak var resultLabel: UILabel!
-    
     @IBOutlet weak var scoreLabelX: UILabel!
     @IBOutlet weak var scoreLabelO: UILabel!
     
+    //Outlets for all buttons on the board
     @IBOutlet weak var a1: UIButton!
     @IBOutlet weak var a2: UIButton!
     @IBOutlet weak var a3: UIButton!
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var c2: UIButton!
     @IBOutlet weak var c3: UIButton!
     
+    //Players
     enum Turn {
             case Cross
             case Circle
@@ -113,6 +114,7 @@ class ViewController: UIViewController {
                     noWinner = false
                 }
                 
+                //Draw if the board is full and there's no winner
                 if(fullBoard() && noWinner)
                 {
                     resultLabel.text = "Draw"
@@ -124,7 +126,7 @@ class ViewController: UIViewController {
     //Function to check all possible winning patterns
     func winnerChecker(_ s :String) -> Bool
         {
-            // Horizontal
+            //Horizontal
             if symbolCheck(a1, s) && symbolCheck(a2, s) && symbolCheck(a3, s)
             {
                 return true
@@ -162,6 +164,7 @@ class ViewController: UIViewController {
                 return true
             }
             
+            //There's no winner if none of the winning patterns are matched
             noWinner = true;
             return false
             
@@ -173,7 +176,7 @@ class ViewController: UIViewController {
             return button.title(for: .normal) == symbol
         }
  
-    
+    //Function to check if the board is full or not
     func fullBoard() -> Bool
         {
             for button in board
