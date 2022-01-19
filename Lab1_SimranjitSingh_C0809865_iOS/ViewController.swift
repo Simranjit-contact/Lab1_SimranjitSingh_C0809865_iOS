@@ -51,7 +51,8 @@ class ViewController: UIViewController {
     //Array of buttons
     var board = [UIButton]()
     
-    //Swipe Gesture Instance
+    //Variable to check if there's no winner
+    var noWinner = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +101,7 @@ class ViewController: UIViewController {
                     resultLabel.text = "Cross Won!"
                     scoreLabelX.text = "\(crossScore)"
                     state = "over"
+                    noWinner = false
                 }
                 
                 if winnerChecker(CIRCLE)
@@ -108,9 +110,10 @@ class ViewController: UIViewController {
                     resultLabel.text = "Circle Won!"
                     scoreLabelO.text = "\(circleScore)"
                     state = "over"
+                    noWinner = false
                 }
                 
-                if(fullBoard())
+                if(fullBoard() && noWinner)
                 {
                     resultLabel.text = "Draw"
                     state = "over"
@@ -159,7 +162,9 @@ class ViewController: UIViewController {
                 return true
             }
             
+            noWinner = true;
             return false
+            
         }
     
     
